@@ -73,7 +73,7 @@ wp plugin install /path/to/afa-salesforce-integration.zip --activate
 ```bash
 # Set all configuration options
 wp option update afa_salesforce_is_sandbox 1
-wp option update afa_salesforce_sandbox_url "https://https://airandspaceforcesassociation--fullsb.sandbox.my.salesforce.com"
+wp option update afa_salesforce_sandbox_url "https://airandspaceforcesassociation--fullsb.sandbox.my.salesforce.com"
 wp option update afa_salesforce_consumer_key "YOUR_CONSUMER_KEY"
 wp option update afa_salesforce_username "wp-integration@afa.org.fullsb"
 wp option update afa_salesforce_private_key "$(cat /path/to/salesforce.key)"
@@ -99,7 +99,7 @@ Create a secure document with these values to use across all sites:
 
 ```
 Environment: Sandbox
-Sandbox URL: https://https://airandspaceforcesassociation--fullsb.sandbox.my.salesforce.com
+Sandbox URL: https://airandspaceforcesassociation--fullsb.sandbox.my.salesforce.com
 Consumer Key: 3MVG9XYZ123...
 Integration Username: wp-integration@afa.org.fullsb
 APEX Endpoint: /services/apexrest/AFACreateUser
@@ -158,7 +158,7 @@ for site in "${SITES[@]}"; do
 
     # Configure
     wp option update afa_salesforce_is_sandbox 1 --ssh="$site"
-    wp option update afa_salesforce_sandbox_url "https://https://airandspaceforcesassociation--fullsb.sandbox.my.salesforce.com" --ssh="$site"
+    wp option update afa_salesforce_sandbox_url "https://airandspaceforcesassociation--fullsb.sandbox.my.salesforce.com" --ssh="$site"
     wp option update afa_salesforce_consumer_key "$CONSUMER_KEY" --ssh="$site"
     wp option update afa_salesforce_username "$USERNAME" --ssh="$site"
     wp option update afa_salesforce_private_key "$(cat $PRIVATE_KEY_FILE)" --ssh="$site"

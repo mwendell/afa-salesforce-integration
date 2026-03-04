@@ -193,18 +193,18 @@ function afa_salesforce_is_sandbox_callback() {
 }
 
 function afa_salesforce_sandbox_url_callback() {
-	$value = get_option( 'afa_salesforce_sandbox_url', 'https://https://airandspaceforcesassociation--fullsb.sandbox.my.salesforce.com' );
+	$value = get_option( 'afa_salesforce_sandbox_url', 'https://airandspaceforcesassociation--fullsb.sandbox.my.salesforce.com' );
 	?>
 	<input type="text" name="afa_salesforce_sandbox_url" value="<?php echo esc_attr( $value ); ?>" class="regular-text" />
-	<p class="description"><?php _e( 'Your Salesforce sandbox URL (e.g., https://https://airandspaceforcesassociation--fullsb.sandbox.my.salesforce.com)', 'afa-salesforce' ); ?></p>
+	<p class="description"><?php _e( 'Your Salesforce sandbox URL (e.g., https://airandspaceforcesassociation--fullsb.sandbox.my.salesforce.com)', 'afa-salesforce' ); ?></p>
 	<?php
 }
 
 function afa_salesforce_instance_url_callback() {
-	$value = get_option( 'afa_salesforce_instance_url', 'https://https://airandspaceforcesassociation.my.salesforce.com' );
+	$value = get_option( 'afa_salesforce_instance_url', 'https://airandspaceforcesassociation.my.salesforce.com' );
 	?>
 	<input type="text" name="afa_salesforce_instance_url" value="<?php echo esc_attr( $value ); ?>" class="regular-text" />
-	<p class="description"><?php _e( 'Your Salesforce production instance URL (e.g., https://https://airandspaceforcesassociation.my.salesforce.com)', 'afa-salesforce' ); ?></p>
+	<p class="description"><?php _e( 'Your Salesforce production instance URL (e.g., https://airandspaceforcesassociation.my.salesforce.com)', 'afa-salesforce' ); ?></p>
 	<?php
 }
 
