@@ -1,5 +1,5 @@
 === AFA Salesforce Integration ===
-Contributors: airforceassociation
+Contributors: airandspaceforcesassociation
 Tags: salesforce, crm, integration, forms, jwt
 Requires at least: 5.0
 Tested up to: 6.4
