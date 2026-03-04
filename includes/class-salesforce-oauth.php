@@ -38,7 +38,7 @@ class AFA_Salesforce_OAuth {
 	 */
 	private function load_settings() {
 		$this->is_sandbox = get_option( 'afa_salesforce_is_sandbox', true );
-		
+
 		// OAuth-specific settings
 		$this->client_id = get_option( 'afa_salesforce_oauth_client_id', '' );
 		$this->client_secret = get_option( 'afa_salesforce_oauth_client_secret', '' );
@@ -46,9 +46,12 @@ class AFA_Salesforce_OAuth {
 
 		// Set URLs based on environment
 		if ( $this->is_sandbox ) {
-			$this->authorize_url = 'https://test.salesforce.com/services/oauth2/authorize';
-			$this->token_url = 'https://test.salesforce.com/services/oauth2/token';
-			$this->userinfo_url = 'https://test.salesforce.com/services/oauth2/userinfo';
+			//$this->authorize_url = 'https://test.salesforce.com/services/oauth2/authorize';
+			//$this->token_url = 'https://test.salesforce.com/services/oauth2/token';
+			//$this->userinfo_url = 'https://test.salesforce.com/services/oauth2/userinfo';
+			$this->authorize_url = 'https://login.salesforce.com/services/oauth2/authorize';
+			$this->token_url = 'https://login.salesforce.com/services/oauth2/token';
+			$this->userinfo_url = 'https://login.salesforce.com/services/oauth2/userinfo';
 		} else {
 			$this->authorize_url = 'https://login.salesforce.com/services/oauth2/authorize';
 			$this->token_url = 'https://login.salesforce.com/services/oauth2/token';
@@ -157,8 +160,8 @@ class AFA_Salesforce_OAuth {
 		$token_data = json_decode( $response_body, true );
 
 		if ( $response_code !== 200 ) {
-			$error_msg = isset( $token_data['error_description'] ) 
-				? $token_data['error_description'] 
+			$error_msg = isset( $token_data['error_description'] )
+				? $token_data['error_description']
 				: 'Token exchange failed';
 			error_log( 'Salesforce OAuth Token Error (HTTP ' . $response_code . '): ' . $error_msg );
 			return new WP_Error( 'token_error', $error_msg, $token_data );
@@ -200,8 +203,8 @@ class AFA_Salesforce_OAuth {
 		$user_data = json_decode( $response_body, true );
 
 		if ( $response_code !== 200 ) {
-			$error_msg = isset( $user_data['error'] ) 
-				? $user_data['error'] 
+			$error_msg = isset( $user_data['error'] )
+				? $user_data['error']
 				: 'Failed to retrieve user info';
 			error_log( 'Salesforce OAuth UserInfo Error (HTTP ' . $response_code . '): ' . $error_msg );
 			return new WP_Error( 'userinfo_error', $error_msg, $user_data );
@@ -291,7 +294,7 @@ class AFA_Salesforce_OAuth {
 	 */
 	public function clear_auth_cookie() {
 		$user_id = $this->get_current_user_id();
-		
+
 		if ( $user_id ) {
 			// Delete user data
 			delete_transient( 'afa_sf_user_data_' . $user_id );

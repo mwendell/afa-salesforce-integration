@@ -53,7 +53,8 @@ class AFA_Salesforce_Integration {
 
 		// Set login URL based on environment
 		if ( $this->is_sandbox ) {
-			$this->login_url = 'https://test.salesforce.com';
+			//$this->login_url = 'https://test.salesforce.com';
+			$this->login_url = 'https://login.salesforce.com';
 			$this->sandbox_url = isset( $config['sandbox_url'] )
 				? $config['sandbox_url']
 				: get_option( 'afa_salesforce_sandbox_url', '' );
