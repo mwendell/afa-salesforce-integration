@@ -64,7 +64,7 @@ function afa_salesforce_register_settings() {
 	// Add settings fields - Environment
 	add_settings_field(
 		'afa_salesforce_is_sandbox',
-		__( 'Environment', 'afa-salesforce' ),
+		__( 'Environment (Ignore)', 'afa-salesforce' ),
 		'afa_salesforce_is_sandbox_callback',
 		'afa-salesforce',
 		'afa_salesforce_environment_section'
@@ -188,7 +188,7 @@ function afa_salesforce_is_sandbox_callback() {
 		<option value="1" <?php selected( $value, true ); ?>><?php _e( 'Sandbox', 'afa-salesforce' ); ?></option>
 		<option value="0" <?php selected( $value, false ); ?>><?php _e( 'Production', 'afa-salesforce' ); ?></option>
 	</select>
-	<p class="description"><?php _e( 'Select whether to use Salesforce Sandbox or Production environment.', 'afa-salesforce' ); ?></p>
+	<p class="description"><?php _e( 'This is not effective, place appropriate URLs in both slots below to configure.', 'afa-salesforce' ); ?></p>
 	<?php
 }
 
