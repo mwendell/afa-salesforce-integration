@@ -22,7 +22,7 @@ function afa_salesforce_render_form() {
 		<form id="afa-salesforce-form" method="post" action="" class="afa-salesforce-form">
 
 			<?php
-			$join_form_html = get_option( 'afa_salesforce_join_form_html', "<h5>Enjoying This?</h5>/n<p><b>Become an AFA member for free</b> to unlock exclusive content, receive breaking Air Force & Space Force news, and join the community that's moving our mission forward.</p>/n<p>There's no cost to join. Just fill out the form below, and you're in.</p>" );
+			$join_form_html = get_option( 'afa_salesforce_join_form_html', "<h5>Enjoying This?</h5><p><b>Become an AFA member for free</b> to unlock exclusive content, receive breaking Air Force & Space Force news, and join the community that's moving our mission forward.</p><p>There's no cost to join. Just fill out the form below, and you're in.</p>" );
 
 			echo $join_form_html;
 
@@ -120,7 +120,7 @@ function afa_salesforce_render_form() {
 			<div class="afa-thankyou-icon">&#10003;</div>
 
 			<?php
-			$success_html = get_option( 'afa_salesforce_success_html', "<h2>Thank You!</h2>/n<p><b>Check your inbox to verify your email address and finish setting up your AFA account.</b></p>" );
+			$success_html = get_option( 'afa_salesforce_success_html', "<h2>Thank You!</h2><p><b>Check your inbox to verify your email address and finish setting up your AFA account.</b></p>" );
 
 			echo $success_html;
 
@@ -143,7 +143,7 @@ function afa_salesforce_render_form() {
 			<div class="afa-login-icon">&starf;</div>
 
 			<?php
-			$existing_user_html = get_option( 'afa_salesforce_existing_user_html', "<h2>Welcome Back!</h2>/n<p><b>An account with this email already exists. Please log in to continue.</b></p>" );
+			$existing_user_html = get_option( 'afa_salesforce_existing_user_html', "<h2>Welcome Back!</h2><p><b>An account with this email already exists. Please log in to continue.</b></p>" );
 
 			echo $existing_user_html;
 
