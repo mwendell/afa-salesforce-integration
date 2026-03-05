@@ -75,7 +75,7 @@ function afa_salesforce_register_settings() {
 	// Add settings fields - Environment
 	add_settings_field(
 		'afa_salesforce_is_sandbox',
-		__( 'Environment (Ignore)', 'afa-salesforce' ),
+		__( 'Environment', 'afa-salesforce' ),
 		'afa_salesforce_is_sandbox_callback',
 		'afa-salesforce',
 		'afa_salesforce_environment_section'
@@ -220,13 +220,14 @@ function afa_salesforce_oauth_section_callback() {
  * Field callbacks
  */
 function afa_salesforce_is_sandbox_callback() {
-	$value = get_option( 'afa_salesforce_is_sandbox', true );
+	$value = get_option( 'afa_salesforce_is_sandbox', false );
+	$selected = ( $value ) ? '' : 'selected';
 	?>
 	<select name="afa_salesforce_is_sandbox" id="afa_salesforce_is_sandbox">
-		<option value="1" <?php selected( $value, true ); ?>><?php _e( 'Sandbox', 'afa-salesforce' ); ?></option>
-		<option value="0" <?php selected( $value, false ); ?>><?php _e( 'Production', 'afa-salesforce' ); ?></option>
+		<option value="1">Sandbox</option>
+		<option value="0" <?php echo $selected ?>>Production</option>
 	</select>
-	<p class="description"><?php _e( 'This is not effective, place appropriate URLs in both slots below to configure.', 'afa-salesforce' ); ?></p>
+	<p class="description"><?php _e( 'Select Sandbox or Production', 'afa-salesforce' ); ?></p>
 	<?php
 }
 
