@@ -329,7 +329,7 @@ function afa_salesforce_join_form_html_callback() {
 	<?php
 }
 
-function afa_salesforce_join_form_html_callback() {
+function afa_salesforce_success_html_callback() {
 	$value = get_option( 'afa_salesforce_success_html', "<h2>Thank You!</h2>/n<p><b>Check your inbox to verify your email address and finish setting up your AFA account.</b></p>" );
 	?>
 	<textarea name="afa_salesforce_success_html" rows="6" class="large-text code"><?php echo esc_textarea( $value ); ?></textarea>
@@ -337,7 +337,7 @@ function afa_salesforce_join_form_html_callback() {
 	<?php
 }
 
-function afa_salesforce_join_form_html_callback() {
+function afa_salesforce_existing_user_html_callback() {
 	$value = get_option( 'afa_salesforce_existing_user_html', "<h2>Welcome Back!</h2>/n<p><b>An account with this email already exists. Please log in to continue.</b></p>" );
 	?>
 	<textarea name="afa_salesforce_existing_user_html" rows="6" class="large-text code"><?php echo esc_textarea( $value ); ?></textarea>
