@@ -322,7 +322,7 @@ function afa_salesforce_oauth_redirect_uri_callback() {
 
 
 function afa_salesforce_join_form_html_callback() {
-	$value = get_option( 'afa_salesforce_join_form_html', "<h5>Enjoying This?</h5>/n<p><b>Become an AFA member for free</b> to unlock exclusive content, receive breaking Air Force & Space Force news, and join the community that's moving our mission forward.</p>/n<p>There's no cost to join. Just fill out the form below, and you're in.</p>" );
+	$value = get_option( 'afa_salesforce_join_form_html', "<h5>Enjoying This?</h5><p><b>Become an AFA member for free</b> to unlock exclusive content, receive breaking Air Force & Space Force news, and join the community that's moving our mission forward.</p><p>There's no cost to join. Just fill out the form below, and you're in.</p>" );
 	?>
 	<textarea name="afa_salesforce_join_form_html" rows="6" class="large-text code"><?php echo esc_textarea( $value ); ?></textarea>
 	<p class="description"><?php _e( 'this is displayed at the top of the Mission Member Join form.', 'afa-salesforce' ); ?></p>
@@ -330,7 +330,7 @@ function afa_salesforce_join_form_html_callback() {
 }
 
 function afa_salesforce_success_html_callback() {
-	$value = get_option( 'afa_salesforce_success_html', "<h2>Thank You!</h2>/n<p><b>Check your inbox to verify your email address and finish setting up your AFA account.</b></p>" );
+	$value = get_option( 'afa_salesforce_success_html', "<h2>Thank You!</h2><p><b>Check your inbox to verify your email address and finish setting up your AFA account.</b></p>" );
 	?>
 	<textarea name="afa_salesforce_success_html" rows="6" class="large-text code"><?php echo esc_textarea( $value ); ?></textarea>
 	<p class="description"><?php _e( 'This is displayed when the Mission member form has successfully added a new user.', 'afa-salesforce' ); ?></p>
@@ -338,7 +338,7 @@ function afa_salesforce_success_html_callback() {
 }
 
 function afa_salesforce_existing_user_html_callback() {
-	$value = get_option( 'afa_salesforce_existing_user_html', "<h2>Welcome Back!</h2>/n<p><b>An account with this email already exists. Please log in to continue.</b></p>" );
+	$value = get_option( 'afa_salesforce_existing_user_html', "<h2>Welcome Back!</h2><p><b>An account with this email already exists. Please log in to continue.</b></p>" );
 	?>
 	<textarea name="afa_salesforce_existing_user_html" rows="6" class="large-text code"><?php echo esc_textarea( $value ); ?></textarea>
 	<p class="description"><?php _e( 'Displayed when a visitor fills out the form with an email address that is already in Salesforce.', 'afa-salesforce' ); ?></p>
