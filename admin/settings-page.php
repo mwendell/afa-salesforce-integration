@@ -149,7 +149,7 @@ function afa_salesforce_register_settings() {
 	add_settings_field(
 		'afa_salesforce_existing_user_html',
 		'Existing User HTML',
-		'afa_salesforce_existing_user_html',
+		'afa_salesforce_existing_user_html_callback',
 		'afa-salesforce',
 		'afa_salesforce_html_section'
 	);
