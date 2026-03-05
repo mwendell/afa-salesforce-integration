@@ -15,6 +15,16 @@ if ( ! defined( 'WPINC' ) ) {
  * Add admin menu pages
  */
 function afa_salesforce_admin_menu() {
+
+	add_options_page(
+		'AFA Salesforce',
+		'Salesforce',
+		'manage_options',
+		'afa-salesforce',
+		'afa_salesforce_settings_page'
+	);
+
+	/*
 	// Main settings page
 	add_menu_page(
 		__( 'Salesforce Integration', 'afa-salesforce' ),
@@ -45,6 +55,7 @@ function afa_salesforce_admin_menu() {
 		'afa-salesforce-test',
 		'afa_salesforce_test_page'
 	);
+	*/
 }
 add_action( 'admin_menu', 'afa_salesforce_admin_menu' );
 

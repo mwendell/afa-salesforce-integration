@@ -20,11 +20,20 @@ function afa_salesforce_render_form() {
 	<div class="afa-salesforce-form-wrapper">
 		<!-- Registration form (default visible state) -->
 		<form id="afa-salesforce-form" method="post" action="" class="afa-salesforce-form">
+
+			<?php
+			$join_form_html = get_option( 'afa_salesforce_join_form_html', "<h5>Enjoying This?</h5>/n<p><b>Become an AFA member for free</b> to unlock exclusive content, receive breaking Air Force & Space Force news, and join the community that's moving our mission forward.</p>/n<p>There's no cost to join. Just fill out the form below, and you're in.</p>" );
+
+			echo $join_form_html;
+
+			/*
 			<h5>Enjoying This?</h5>
 			<p><b>Become an AFA member for free</b> to unlock exclusive content, receive breaking Air Force & Space Force news, and join the community that's moving our mission forward.</p>
 			<p>There's no cost to join. Just fill out the form below, and you're in.</p>
+			*/
 
-			<?php wp_nonce_field( 'afa_salesforce_form_action', 'afa_salesforce_nonce' ); ?>
+			wp_nonce_field( 'afa_salesforce_form_action', 'afa_salesforce_nonce' );
+			?>
 
 			<input type="hidden" id="afa_source" name="afa_source" value="<?php echo 'https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']; ?>" />
 			<input type="hidden" id="afa_intent" name="afa_intent" value="" />
@@ -109,9 +118,19 @@ function afa_salesforce_render_form() {
 		<!-- Thank-you panel (shown on 200/201) -->
 		<div id="afa-salesforce-thankyou" class="afa-salesforce-thankyou" style="display: none;">
 			<div class="afa-thankyou-icon">&#10003;</div>
-			<h2><?php _e( 'Thank You!', 'afa-salesforce' ); ?></h2>
-			<p><?php _e( 'Your account has been created successfully.', 'afa-salesforce' ); ?><br/></p>
-			<p><b><?php _e( 'Please check your email for a link which will allow you to confirm your membership and create a password.</b>', 'afa-salesforce' ); ?></p>
+
+			<?php
+			$success_html = get_option( 'afa_salesforce_success_html', "<h2>Thank You!</h2>/n<p><b>Check your inbox to verify your email address and finish setting up your AFA account.</b></p>" );
+
+			echo $success_html;
+
+			/*
+			<h2>Thank You!</h2>
+			<p><b>Check your inbox to verify your email address and finish setting up your AFA account.</b></p>
+			*/
+
+			?>
+
 			<div class="afa-form-field">
 				<button type="button" class="afa-submit-button mm-popup-close-internal">
 					<span class="afa-button-text"><?php _e( 'Close', 'afa-salesforce' ); ?></span>
@@ -122,8 +141,18 @@ function afa_salesforce_render_form() {
 		<!-- Login prompt (shown on 409) -->
 		<div id="afa-salesforce-login-prompt" class="afa-salesforce-login-prompt" style="display: none;">
 			<div class="afa-login-icon">&starf;</div>
+
+			<?php
+			$existing_user_html = get_option( 'afa_salesforce_existing_user_html', "<h2>Welcome Back!</h2>/n<p><b>An account with this email already exists. Please log in to continue.</b></p>" );
+
+			echo $existing_user_html;
+
+			/*
 			<h2><?php _e( 'Welcome Back!', 'afa-salesforce' ); ?></h2>
 			<p><b><?php _e( 'An account with this email already exists. Please log in to continue.</b>', 'afa-salesforce' ); ?></p>
+			*/
+			?>
+
 			<div class="afa-form-field">
 				<a href="/login">
 					<button type="button" class="afa-submit-button">

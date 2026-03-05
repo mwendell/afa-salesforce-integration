@@ -30,6 +30,10 @@ function afa_salesforce_register_settings() {
 	// register_setting( 'afa_salesforce_settings', 'afa_salesforce_oauth_client_secret' );
 	// register_setting( 'afa_salesforce_settings', 'afa_salesforce_oauth_redirect_uri' );
 
+	register_setting( 'afa_salesforce_settings', 'afa_salesforce_join_form_html' );
+	register_setting( 'afa_salesforce_settings', 'afa_salesforce_success_html' );
+	register_setting( 'afa_salesforce_settings', 'afa_salesforce_existing_user_html' );
+
 	// Add settings sections
 	add_settings_section(
 		'afa_salesforce_environment_section',
@@ -49,6 +53,13 @@ function afa_salesforce_register_settings() {
 		'afa_salesforce_advanced_section',
 		__( 'Advanced Settings', 'afa-salesforce' ),
 		'afa_salesforce_advanced_section_callback',
+		'afa-salesforce'
+	);
+
+	add_settings_section(
+		'afa_salesforce_html_section',
+		__( 'Message HTML Settings', 'afa-salesforce' ),
+		'afa_salesforce_html_section_callback',
 		'afa-salesforce'
 	);
 
@@ -111,13 +122,36 @@ function afa_salesforce_register_settings() {
 		'afa_salesforce_credentials_section'
 	);
 
-	// Add settings fields - Advanced
 	add_settings_field(
 		'afa_salesforce_apex_endpoint_create',
 		__( 'New User Endpoint', 'afa-salesforce' ),
 		'afa_salesforce_apex_endpoint_create_callback',
 		'afa-salesforce',
 		'afa_salesforce_advanced_section'
+	);
+
+	add_settings_field(
+		'afa_salesforce_join_form_html',
+		'Join Form HTML',
+		'afa_salesforce_join_form_html_callback',
+		'afa-salesforce',
+		'afa_salesforce_html_section'
+	);
+
+	add_settings_field(
+		'afa_salesforce_success_html',
+		'Successfully Joined HTML',
+		'afa_salesforce_success_html_callback',
+		'afa-salesforce',
+		'afa_salesforce_html_section'
+	);
+
+	add_settings_field(
+		'afa_salesforce_existing_user_html',
+		'Existing User HTML',
+		'afa_salesforce_existing_user_html',
+		'afa-salesforce',
+		'afa_salesforce_html_section'
 	);
 
 	/*
@@ -170,6 +204,10 @@ function afa_salesforce_credentials_section_callback() {
 
 function afa_salesforce_advanced_section_callback() {
 	echo '<p>' . esc_html__( 'Advanced configuration options.', 'afa-salesforce' ) . '</p>';
+}
+
+function afa_salesforce_html_section_callback() {
+	echo '<p>' . esc_html__( 'Insert valid HTML for user messages.', 'afa-salesforce' ) . '</p>';
 }
 
 /*
@@ -282,6 +320,32 @@ function afa_salesforce_oauth_redirect_uri_callback() {
 	<?php
 }
 
+
+function afa_salesforce_join_form_html_callback() {
+	$value = get_option( 'afa_salesforce_join_form_html', "<h5>Enjoying This?</h5>/n<p><b>Become an AFA member for free</b> to unlock exclusive content, receive breaking Air Force & Space Force news, and join the community that's moving our mission forward.</p>/n<p>There's no cost to join. Just fill out the form below, and you're in.</p>" );
+	?>
+	<textarea name="afa_salesforce_join_form_html" rows="6" class="large-text code"><?php echo esc_textarea( $value ); ?></textarea>
+	<p class="description"><?php _e( 'this is displayed at the top of the Mission Member Join form.', 'afa-salesforce' ); ?></p>
+	<?php
+}
+
+function afa_salesforce_join_form_html_callback() {
+	$value = get_option( 'afa_salesforce_success_html', "<h2>Thank You!</h2>/n<p><b>Check your inbox to verify your email address and finish setting up your AFA account.</b></p>" );
+	?>
+	<textarea name="afa_salesforce_success_html" rows="6" class="large-text code"><?php echo esc_textarea( $value ); ?></textarea>
+	<p class="description"><?php _e( 'This is displayed when the Mission member form has successfully added a new user.', 'afa-salesforce' ); ?></p>
+	<?php
+}
+
+function afa_salesforce_join_form_html_callback() {
+	$value = get_option( 'afa_salesforce_existing_user_html', "<h2>Welcome Back!</h2>/n<p><b>An account with this email already exists. Please log in to continue.</b></p>" );
+	?>
+	<textarea name="afa_salesforce_existing_user_html" rows="6" class="large-text code"><?php echo esc_textarea( $value ); ?></textarea>
+	<p class="description"><?php _e( 'Displayed when a visitor fills out the form with an email address that is already in Salesforce.', 'afa-salesforce' ); ?></p>
+	<?php
+}
+
+
 /**
  * Settings page content
  */
@@ -314,21 +378,25 @@ function afa_salesforce_settings_page() {
 		<form method="post">
 			<?php wp_nonce_field( 'afa_salesforce_clear_cache' ); ?>
 			<p>
-				<button type="submit" name="clear_cache" class="button"><?php _e( 'Clear Token Cache', 'afa-salesforce' ); ?></button>
+				<button type="submit" name="clear_cache" class="button"><?php _e( 'Clear Token Cache', 'afa-salesforce' ); ?></button><br/>
 				<span class="description"><?php _e( 'Clear the cached Salesforce access token to force a new authentication request.', 'afa-salesforce' ); ?></span>
 			</p>
 		</form>
-
+		<!--
 		<hr>
-
 		<h2><?php _e( 'Form Shortcode', 'afa-salesforce' ); ?></h2>
+		-->
+
 		<p><?php _e( 'Use this shortcode to display the Salesforce form on any page or post:', 'afa-salesforce' ); ?></p>
 		<p><code>[afa_salesforce_form]</code></p>
 
+		<!--
 		<hr>
 
 		<h2><?php _e( 'Documentation', 'afa-salesforce' ); ?></h2>
 		<p><?php _e( 'For setup instructions and troubleshooting, please refer to the plugin documentation.', 'afa-salesforce' ); ?></p>
+		-->
+
 		<ul>
 			<li><a href="<?php echo esc_url( admin_url( 'admin.php?page=afa-salesforce-test' ) ); ?>"><?php _e( 'Test Salesforce Connection', 'afa-salesforce' ); ?></a></li>
 		</ul>
