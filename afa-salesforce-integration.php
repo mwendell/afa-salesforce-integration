@@ -102,13 +102,20 @@ function afa_salesforce_cookies() {
 
 		$expires = time() + 3600;
 
+		$trigger = $_COOKIE['afa_mm_trigger'];
+		$status = $_COOKIE['afa_mm_status'];
+		error_log( "trigger is " . $trigger );
+		error_log( "status is " . $status );
+		error_log( print_r( $trigger, 1 ) );
+		error_log( "wordpress_test_cookie is " . $_COOKIE['wordpress_test_cookie'] );
+
 		if ( ! isset( $_COOKIE['afa_mm_trigger'] ) ) {
-			error_log( 'creating afa_mm_triger' );
+			error_log( 'creating afa_mm_trigger' );
 			setcookie( 'afa_mm_trigger', 0, $expires, '/' );
 		}
 
 		if ( ! isset( $_COOKIE['afa_mm_status'] ) ) {
-			error_log( 'creating afa_mm_triger' );
+			error_log( 'creating afa_mm_status' );
 			setcookie( 'afa_mm_status', 'none', $expires, '/' );
 		}
 
