@@ -100,7 +100,16 @@ function afa_salesforce_cookies() {
 
 	if ( ! headers_sent() ) {
 
-		$expires = time() + 3600;
+		$expires = time() + ( 3600 * 5 );
+
+		$args = array(
+			'expires'  => $expires,
+			'path'     => '/',
+			'domain'   => '', // Empty string for current domain
+			'secure'   => is_ssl(), // true if HTTPS, false if HTTP
+			'httponly' => false,
+			'samesite' => 'Lax'
+		);
 
 		$trigger = $_COOKIE['afa_mm_trigger'];
 		$status = $_COOKIE['afa_mm_status'];
@@ -111,12 +120,12 @@ function afa_salesforce_cookies() {
 
 		if ( ! isset( $_COOKIE['afa_mm_trigger'] ) ) {
 			error_log( 'creating afa_mm_trigger' );
-			setcookie( 'afa_mm_trigger', 0, $expires, '/' );
+			setcookie( 'afa_mm_trigger', '0', $args );
 		}
 
 		if ( ! isset( $_COOKIE['afa_mm_status'] ) ) {
 			error_log( 'creating afa_mm_status' );
-			setcookie( 'afa_mm_status', 'none', $expires, '/' );
+			setcookie( 'afa_mm_status', 'none', $args );
 		}
 
 	}
