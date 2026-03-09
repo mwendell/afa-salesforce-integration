@@ -23,8 +23,10 @@ function afa_salesforce_render_form() {
 
 			<?php
 			$join_form_html = get_option( 'afa_salesforce_join_form_html', "<h5>Enjoying This?</h5><p><b>Become an AFA member for free</b> to unlock exclusive content, receive breaking Air Force & Space Force news, and join the community that's moving our mission forward.</p><p>There's no cost to join. Just fill out the form below, and you're in.</p>" );
+			$join_form_gated_html = get_option( 'afa_salesforce_join_form_gated_html', "<h5>This content is for AFA Members only.</h5><p><b>Joining is free</b> and only takes a moment. Fill out the form below to access this content, along with a number of other member-exclusive benefits.</p>" );
 
-			echo $join_form_html;
+			echo "<div class='browsing'>" . $join_form_html . "</div>";
+			echo "<div class='gated'>" . $join_form_gated_html . "</div>";
 
 			/*
 			<h5>Enjoying This?</h5>
