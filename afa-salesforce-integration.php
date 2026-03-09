@@ -103,10 +103,12 @@ function afa_salesforce_cookies() {
 		$expires = time() + 3600;
 
 		if ( ! isset( $_COOKIE['afa_mm_trigger'] ) ) {
+			error_log( 'creating afa_mm_triger' );
 			setcookie( 'afa_mm_trigger', 0, $expires, '/' );
 		}
 
 		if ( ! isset( $_COOKIE['afa_mm_status'] ) ) {
+			error_log( 'creating afa_mm_triger' );
 			setcookie( 'afa_mm_status', 'none', $expires, '/' );
 		}
 
