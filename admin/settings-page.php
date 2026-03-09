@@ -31,6 +31,7 @@ function afa_salesforce_register_settings() {
 	// register_setting( 'afa_salesforce_settings', 'afa_salesforce_oauth_redirect_uri' );
 
 	register_setting( 'afa_salesforce_settings', 'afa_salesforce_join_form_html' );
+	register_setting( 'afa_salesforce_settings', 'afa_salesforce_join_form_gated_html' );
 	register_setting( 'afa_salesforce_settings', 'afa_salesforce_success_html' );
 	register_setting( 'afa_salesforce_settings', 'afa_salesforce_existing_user_html' );
 
