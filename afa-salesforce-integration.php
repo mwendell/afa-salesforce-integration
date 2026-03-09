@@ -113,7 +113,7 @@ function afa_salesforce_cookies() {
 		$args = array(
 			'expires'  => $expires,
 			'path'     => '/',
-			'domain'   => $domain,
+			'domain'   => '',
 			'secure'   => $is_secure,
 			'httponly' => false,
 			'samesite' => 'Lax'
