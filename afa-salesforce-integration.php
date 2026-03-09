@@ -61,7 +61,7 @@ register_activation_hook( __FILE__, 'afa_salesforce_activate' );
 function afa_salesforce_deactivate() {
 	// Clear cached tokens
 	delete_transient( 'salesforce_access_token' );
-	
+
 	// Flush rewrite rules
 	flush_rewrite_rules();
 }
@@ -78,6 +78,43 @@ require_once AFA_SALESFORCE_PLUGIN_DIR . 'includes/enqueue-scripts.php';
 require_once AFA_SALESFORCE_PLUGIN_DIR . 'includes/helper-functions.php';
 require_once AFA_SALESFORCE_PLUGIN_DIR . 'admin/admin-menu.php';
 require_once AFA_SALESFORCE_PLUGIN_DIR . 'admin/settings-page.php';
+
+
+/**
+ * Add popup to footer
+ */
+function afa_salesforce_popup() {
+
+	echo "<div id='mm-popup' class='mm-popup' style='display:none;'>";
+	echo "<button type='button' class='mm-popup-close' aria-label='Close'> × </button>";
+	echo do_shortcode( '[afa_salesforce_form]' );
+	echo "</div>";
+
+}
+add_action( 'wp_footer', 'afa_salesforce_popup' );
+
+/**
+ * Initialize the cookies
+ */
+function afa_salesforce_cookies() {
+
+	if ( ! headers_sent() ) {
+
+		$expires = time() + 3600;
+
+		if ( ! isset( $_COOKIE['afa_mm_trigger'] ) ) {
+			setcookie( 'afa_mm_trigger', 0, $expires, '/' );
+		}
+
+		if ( ! isset( $_COOKIE['afa_mm_status'] ) ) {
+			setcookie( 'afa_mm_status', 'none', $expires, '/' );
+		}
+
+	}
+
+}
+add_action( 'init', 'afa_salesforce_cookies' );
+
 
 /**
  * Initialize the plugin

@@ -314,3 +314,148 @@
 	});
 
 })(jQuery);
+
+// TRIGGERS AND COOKIES
+
+jQuery( document ).ready(function() {
+
+	// activate or close mm form
+	// ===========================
+	jQuery('.mission-membership-trigger').on("click", function(event) {
+		event.preventDefault();
+		jQuery("html, body").animate({ scrollTop: 0 }, "slow");
+		jQuery(".browsing").hide();
+		jQuery(".gated").show();
+		jQuery('.mm-popup').slideDown('fast');
+	});
+	jQuery('#logo-main, .afa-homepage-image-link, .logo-container > a').on("click", function(event) {
+		if (event.altKey) {
+			event.preventDefault();
+			jQuery(".browsing").show();
+			jQuery(".gated").hide();
+			jQuery('.mm-popup').slideDown('fast');
+		}
+	});
+	jQuery('.mm-popup .mm-popup-close').on("click", function(event) {
+		event.preventDefault();
+		reset_mm_cookie();
+		reset_mm_status('dismissed');
+		jQuery('.mm-popup').slideUp('fast');
+	});
+	jQuery('.mm-popup .mm-popup-close-internal').on("click", function(event) {
+		event.preventDefault();
+		reset_mm_cookie();
+		reset_mm_status('dismissed');
+		jQuery('.mm-popup').slideUp('fast');
+	});
+
+});
+
+// display mm form
+// ===========================
+function show_mm_form() {
+
+	if (document.body.classList.contains('logged-in')) {
+		reset_mm_status('saml_login')
+		reset_mm_cookie();
+		return;
+	}
+
+	var form_status = get_cookie('afa_mm_status');
+
+	if (form_status == 'completed' || form_status == 'sf_error' || form_status == 'saml_login') {
+		return;
+	}
+
+	var page_count = parseInt(get_cookie('afa_mm_trigger'));
+
+	if (page_count > 3) {
+		jQuery( document ).ready(function() {
+			jQuery("html, body").animate({ scrollTop: 0 }, "slow");
+			jQuery('.mm-popup').slideDown('fast');
+			reset_mm_cookie();
+		});
+	}
+
+}
+
+// update mm cookies
+// cookie is created by php
+// ===========================
+function increment_mm_cookie() {
+
+	var page_count = parseInt(get_cookie('afa_mm_trigger'));
+	page_count++;
+
+	if (page_count) {
+		var expires = new Date();
+		expires.setTime(expires.getTime() + (3600 * 1000));
+
+		document.cookie = "afa_mm_trigger=" + page_count
+			+ ";expires=" + expires.toUTCString()
+			+ ";path=/";
+	}
+
+}
+
+// reset mm status cookie
+// ===========================
+function reset_mm_status(new_status) {
+
+	var current_status = get_cookie('afa_mm_status');
+
+	if ( current_status == 'saml_login' || current_status == 'completed' ) {
+		return;
+	}
+
+	if ( ! new_status ) {
+		new_status = 'none';
+	}
+
+	var duration = 3600 * 1000;
+	if ( new_status == 'saml_login' || new_status == 'completed' ) {
+		duration = duration * 24 * 5
+	}
+
+	var expires = new Date();
+	expires.setTime(expires.getTime() + duration);
+
+	document.cookie = "afa_mm_status=" + new_status
+		+ ";expires=" + expires.toUTCString()
+		+ ";path=/";
+
+}
+
+// reset mm counter cookie
+// ===========================
+function reset_mm_cookie(count) {
+
+	if ( ! count ) {
+		count = 0;
+	}
+
+	var expires = new Date();
+	expires.setTime(expires.getTime() + (3600 * 1000));
+
+	document.cookie = "afa_mm_trigger=" + count.toString()
+		+ ";expires=" + expires.toUTCString()
+		+ ";path=/";
+
+}
+
+// helper function
+// ===========================
+function get_cookie(name) {
+
+	let value = `; ${document.cookie}`;
+	let parts = value.split(`; ${name}=`);
+	if (parts.length === 2) {
+		return parts.pop().split(';').shift();
+	}
+
+	return null; // Return null if the cookie is not found
+
+}
+
+increment_mm_cookie();
+show_mm_form();

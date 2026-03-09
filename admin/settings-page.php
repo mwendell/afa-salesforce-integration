@@ -340,7 +340,7 @@ function afa_salesforce_join_form_html_callback() {
 }
 
 function afa_salesforce_join_form_gated_html_callback() {
-	$value = get_option( 'afa_salesforce_join_form_gated_html', "<h5>This content is for AFA Members only.</h5><p><b>Joining is free</b> and only takes a moment. Fill out the form below to access this content, along with a number of other member-exclusive benefits.</p>" );
+	$value = get_option( 'afa_salesforce_join_form_gated_html', "<h5>This content is for Members only.</h5><p><b>Joining AFA is free</b> and only takes a moment. Fill out the form below to access this content, along with a number of other member-exclusive benefits.</p>" );
 	?>
 	<textarea name="afa_salesforce_join_form_gated_html" rows="6" class="large-text code"><?php echo esc_textarea( $value ); ?></textarea>
 	<p class="description"><?php _e( 'this is displayed at the top of the Mission Member Join form.', 'afa-salesforce' ); ?></p>
