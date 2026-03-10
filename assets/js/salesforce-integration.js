@@ -384,7 +384,13 @@ function show_mm_form() {
 function increment_mm_cookie() {
 
 	var page_count = parseInt(get_cookie('afa_mm_trigger'));
-	page_count++;
+
+	if ( page_count === null ) {
+		reset_mm_cookie();
+		reset_mm_status();
+	} else {
+		page_count++;
+	}
 
 	if (page_count) {
 		var expires = new Date();
