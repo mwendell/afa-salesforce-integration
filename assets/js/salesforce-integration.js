@@ -368,8 +368,9 @@ function show_mm_form() {
 	}
 
 	var page_count = parseInt(get_cookie('afa_mm_trigger'));
+	var trigger_threshold = window.location.href.includes('airandspaceforces.com') ? 15 : 3;
 
-	if (page_count > 3) {
+	if (page_count > trigger_threshold) {
 		jQuery( document ).ready(function() {
 			jQuery("html, body").animate({ scrollTop: 0 }, "slow");
 			jQuery('.mm-popup').slideDown('fast');
