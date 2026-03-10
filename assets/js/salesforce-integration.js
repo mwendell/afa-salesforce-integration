@@ -385,7 +385,7 @@ function increment_mm_cookie() {
 
 	var page_count = parseInt(get_cookie('afa_mm_trigger'));
 
-	if ( page_count === null ) {
+	if ( page_count === null || page_count !== page_count ) {
 		reset_mm_cookie();
 		reset_mm_status();
 	} else {
