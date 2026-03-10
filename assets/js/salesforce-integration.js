@@ -385,7 +385,7 @@ function increment_mm_cookie() {
 
 	var page_count = parseInt(get_cookie('afa_mm_trigger'));
 
-	console.log("count is " + page_count);
+	//console.log("count is " + page_count);
 
 	page_count++;
 
@@ -416,7 +416,7 @@ function reset_mm_status(new_status) {
 		new_status = 'none';
 	}
 
-	console.log("reset status from " + current_status + " to " + new_status);
+	//console.log("reset status from " + current_status + " to " + new_status);
 
 	var duration = 3600 * 1000;
 	if ( new_status == 'saml_login' || new_status == 'completed' ) {
@@ -440,7 +440,7 @@ function reset_mm_cookie(count) {
 		count = 0;
 	}
 
-	console.log("reset count to " + count);
+	//console.log("reset count to " + count);
 
 	var expires = new Date();
 	expires.setTime(expires.getTime() + (3600 * 1000));
@@ -458,8 +458,8 @@ function get_cookie(name) {
 	let value = `; ${document.cookie}`;
 	let parts = value.split(`; ${name}=`);
 
-	console.log("get_cookie " + name);
-	console.log(value);
+	//console.log("get_cookie " + name);
+	//console.log(value);
 
 	if (parts.length === 2) {
 		return parts.pop().split(';').shift();
