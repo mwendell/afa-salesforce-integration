@@ -85,10 +85,6 @@ require_once AFA_SALESFORCE_PLUGIN_DIR . 'admin/settings-page.php';
  */
 function afa_salesforce_popup() {
 
-	if ( is_page( 16018 ) ) {
-		return;
-	}
-
 	echo "<div id='mm-popup' class='mm-popup' style='display:none;'>";
 	echo "<button type='button' class='mm-popup-close' aria-label='Close'> × </button>";
 	echo do_shortcode( '[afa_salesforce_form]' );
