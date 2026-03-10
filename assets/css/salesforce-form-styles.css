@@ -278,6 +278,13 @@ MISSION MEMBERSHIP STYLES
 	border-radius: 8px;
 	z-index: 999999;
 }
+
+@media screen and (max-width: 768px) {
+	.mm-popup {
+		left: 20px;
+	}
+}
+
 .mm-popup-close {
 	position: absolute;
 	height: 28px;
