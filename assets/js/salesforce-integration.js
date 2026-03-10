@@ -328,6 +328,13 @@ jQuery( document ).ready(function() {
 		jQuery(".gated").show();
 		jQuery('.mm-popup').slideDown('fast');
 	});
+	jQuery('.mission-membership-pdf-trigger').on("click", function(event) {
+		event.preventDefault();
+		jQuery("html, body").animate({ scrollTop: 0 }, "slow");
+		jQuery(".browsing").hide();
+		jQuery(".gated").show();
+		jQuery('.mm-popup').slideDown('fast');
+	});
 	jQuery('#logo-main, .afa-homepage-image-link, .logo-container > a').on("click", function(event) {
 		if (event.altKey) {
 			event.preventDefault();
@@ -358,12 +365,14 @@ function show_mm_form() {
 	if (document.body.classList.contains('logged-in')) {
 		reset_mm_status('saml_login')
 		reset_mm_cookie();
+		jQuery('.mission-membership-pdf-trigger').removeClass('mission-membership-pdf-trigger')
 		return;
 	}
 
 	var form_status = get_cookie('afa_mm_status');
 
 	if (form_status == 'completed' || form_status == 'sf_error' || form_status == 'saml_login') {
+		jQuery('.mission-membership-pdf-trigger').removeClass('mission-membership-pdf-trigger')
 		return;
 	}
 
