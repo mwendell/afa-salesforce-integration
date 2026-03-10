@@ -369,6 +369,11 @@ function show_mm_form() {
 		return;
 	}
 
+	if (document.body.classList.contains('page-id-16018')) {
+		reset_mm_cookie();
+		return;
+	}
+
 	var form_status = get_cookie('afa_mm_status');
 
 	if (form_status == 'completed' || form_status == 'sf_error' || form_status == 'saml_login') {
