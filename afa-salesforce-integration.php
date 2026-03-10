@@ -85,6 +85,10 @@ require_once AFA_SALESFORCE_PLUGIN_DIR . 'admin/settings-page.php';
  */
 function afa_salesforce_popup() {
 
+	if ( is_page( 16018 ) ) {
+		return;
+	}
+
 	echo "<div id='mm-popup' class='mm-popup' style='display:none;'>";
 	echo "<button type='button' class='mm-popup-close' aria-label='Close'> × </button>";
 	echo do_shortcode( '[afa_salesforce_form]' );
@@ -92,46 +96,6 @@ function afa_salesforce_popup() {
 
 }
 add_action( 'wp_footer', 'afa_salesforce_popup' );
-
-/**
- * Initialize the cookies
- */
-function afa_salesforce_cookies() {
-
-	if ( ! headers_sent() ) {
-
-		$expires = time() + ( 3600 * 5 );
-
-        // Detect HTTPS correctly behind a reverse proxy/load balancer
-        /*
-		$is_secure = is_ssl()
-            || ( ! empty( $_SERVER['HTTP_X_FORWARDED_PROTO'] ) && $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https' )
-            || ( ! empty( $_SERVER['HTTP_X_FORWARDED_SSL'] ) && $_SERVER['HTTP_X_FORWARDED_SSL'] === 'on' );
-		*/
-        // Use explicit domain rather than empty string
-        // $domain = parse_url( home_url(), PHP_URL_HOST );
-
-		$args = array(
-			'expires'  => $expires,
-			'path'     => '/',
-			'domain'   => '',
-			'secure'   => false,
-			'httponly' => false,
-			'samesite' => ''
-		);
-
-		if ( ! isset( $_COOKIE['afa_mm_trigger'] ) ) {
-			//setcookie( 'afa_mm_trigger', '0', $args );
-		}
-
-		if ( ! isset( $_COOKIE['afa_mm_status'] ) ) {
-			//setcookie( 'afa_mm_status', 'none', $args );
-		}
-
-	}
-
-}
-add_action( 'init', 'afa_salesforce_cookies' );
 
 
 /**
