@@ -370,7 +370,6 @@ function show_mm_form() {
 	}
 
 	if (document.body.classList.contains('page-id-16018')) {
-		reset_mm_cookie();
 		return;
 	}
 
