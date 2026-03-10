@@ -113,7 +113,7 @@ function afa_salesforce_cookies() {
 		$args = array(
 			'expires'  => $expires,
 			'path'     => '/',
-			'domain'   => '',
+			'domain'   => '.staging-5em2ouy-7i7ozntag7wdo.us-2.platformsh.site',
 			'secure'   => $is_secure,
 			'httponly' => false,
 			'samesite' => 'Lax'
