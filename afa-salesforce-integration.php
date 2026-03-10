@@ -103,23 +103,22 @@ function afa_salesforce_cookies() {
 		$expires = time() + ( 3600 * 5 );
 
         // Detect HTTPS correctly behind a reverse proxy/load balancer
-        $is_secure = is_ssl()
+        /*
+		$is_secure = is_ssl()
             || ( ! empty( $_SERVER['HTTP_X_FORWARDED_PROTO'] ) && $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https' )
             || ( ! empty( $_SERVER['HTTP_X_FORWARDED_SSL'] ) && $_SERVER['HTTP_X_FORWARDED_SSL'] === 'on' );
-
+		*/
         // Use explicit domain rather than empty string
-        $domain = parse_url( home_url(), PHP_URL_HOST );
+        // $domain = parse_url( home_url(), PHP_URL_HOST );
 
 		$args = array(
 			'expires'  => $expires,
 			'path'     => '/',
-			'domain'   => '.staging-5em2ouy-7i7ozntag7wdo.us-2.platformsh.site',
-			'secure'   => $is_secure,
+			'domain'   => '',
+			'secure'   => false,
 			'httponly' => false,
-			'samesite' => 'Lax'
+			'samesite' => ''
 		);
-
-		error_log( print_r( $_COOKIE['afa_mm_trigger'], 1 ) );
 
 		if ( ! isset( $_COOKIE['afa_mm_trigger'] ) ) {
 			setcookie( 'afa_mm_trigger', '0', $args );
