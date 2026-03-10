@@ -384,12 +384,7 @@ function show_mm_form() {
 function increment_mm_cookie() {
 
 	var page_count = parseInt(get_cookie('afa_mm_trigger'));
-
-	//console.log("count is " + page_count);
-
 	page_count++;
-
-	console.log("incremement count to " + page_count);
 
 	if (page_count) {
 		var expires = new Date();

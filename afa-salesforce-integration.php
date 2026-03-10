@@ -121,11 +121,11 @@ function afa_salesforce_cookies() {
 		);
 
 		if ( ! isset( $_COOKIE['afa_mm_trigger'] ) ) {
-			setcookie( 'afa_mm_trigger', '0', $args );
+			//setcookie( 'afa_mm_trigger', '0', $args );
 		}
 
 		if ( ! isset( $_COOKIE['afa_mm_status'] ) ) {
-			setcookie( 'afa_mm_status', 'none', $args );
+			//setcookie( 'afa_mm_status', 'none', $args );
 		}
 
 	}
