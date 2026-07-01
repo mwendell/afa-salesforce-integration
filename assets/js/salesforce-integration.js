@@ -90,7 +90,7 @@
 		 */
 		function handle_reg_success(response) {
 			console.log(response);
-			jQuery('.mission-membership-pdf-trigger').removeClass('mission-membership-pdf-trigger')
+			jQuery('.mission-membership-pdf-trigger').removeClass('mission-membership-pdf-trigger').off('click');
 
 			var expires = new Date();
 			// expires ten days from now
@@ -125,7 +125,7 @@
 					break;
 
 				case 409:
-					jQuery('.mission-membership-pdf-trigger').removeClass('mission-membership-pdf-trigger')
+					jQuery('.mission-membership-pdf-trigger').removeClass('mission-membership-pdf-trigger').off('click');
 					// Duplicate email – swap to login form
 					swap_to_login_form();
 					break;
