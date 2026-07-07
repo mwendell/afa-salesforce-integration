@@ -383,7 +383,8 @@ function show_mm_form() {
 	}
 
 	var page_count = parseInt(get_cookie('afa_mm_trigger'));
-	var trigger_threshold = window.location.href.includes('airandspaceforces.com') ? 6 : 3;
+	// var trigger_threshold = window.location.href.includes('airandspaceforces.com') ? 6 : 3;
+	var trigger_threshold = 3;
 
 	if (page_count > trigger_threshold) {
 		jQuery( document ).ready(function() {
@@ -437,7 +438,7 @@ function reset_mm_status(new_status) {
 
 	var duration = 3600 * 1000;
 	if ( new_status == 'saml_login' || new_status == 'completed' ) {
-		duration = duration * 24 * 5
+		duration = duration * 24 * 10
 	}
 
 	var expires = new Date();
