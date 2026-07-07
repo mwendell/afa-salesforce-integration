@@ -383,7 +383,7 @@ function show_mm_form() {
 	}
 
 	var page_count = parseInt(get_cookie('afa_mm_trigger'));
-	var trigger_threshold = window.location.href.includes('airandspaceforces.com') ? 15 : 3;
+	var trigger_threshold = window.location.href.includes('airandspaceforces.com') ? 6 : 3;
 
 	if (page_count > trigger_threshold) {
 		jQuery( document ).ready(function() {
